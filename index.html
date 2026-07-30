@@ -3,13 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>n8n Workflow Reliability Checklist</title>
-  <meta name="description" content="A practical ten-point checklist and free browser-only scanner for reviewing exported n8n workflows before production.">
+  <title>FlowBrief QA Kit — n8n Workflow Delivery Toolkit</title>
+  <meta name="description" content="Ten tested local tools, workflow templates, payload fixtures, and handoff checklists for shipping n8n workflows. One-time CLP 27,500 purchase.">
   <link rel="canonical" href="https://y1susslayerr.github.io/">
-  <meta property="og:title" content="n8n Workflow Reliability Checklist">
-  <meta property="og:description" content="Review silent failures, retries, webhook exposure, secrets, duplicate events, and rollback readiness.">
+  <meta property="og:title" content="FlowBrief QA Kit for n8n">
+  <meta property="og:description" content="Test, document, compare, and hand off n8n workflows with ten local CLI tools and reusable delivery templates.">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="https://workflow-hardening-lab.yisuspablo.chatgpt.site/og.png">
+  <meta property="og:image" content="https://workflow-hardening-lab.yisuspablo.chatgpt.site/og-flowbrief.png">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Product","name":"FlowBrief QA Kit v1.9","description":"Local n8n workflow QA, documentation, comparison, and handoff toolkit with ten tested CLI utilities.","category":"DeveloperApplication","offers":{"@type":"Offer","priceCurrency":"CLP","price":"27500","availability":"https://schema.org/InStock","url":"https://mpago.la/1BuLRCS"}}</script>
   <style>
     :root{--ink:#14231b;--paper:#f4f1e8;--panel:#fffdf7;--green:#124e3a;--lime:#d8ff58;--muted:#657168;--line:#c8cec5}
     *{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,system-ui,sans-serif}.shell{width:min(980px,calc(100% - 32px));margin:auto}
@@ -17,28 +18,41 @@
     header{padding:78px 0 48px}.eyebrow{color:var(--green);font:700 11px ui-monospace,monospace;letter-spacing:.14em}h1{max-width:850px;margin:18px 0;font:600 clamp(44px,8vw,78px)/.98 Georgia,serif;letter-spacing:-.05em}header p{max-width:690px;color:#48544c;font-size:20px;line-height:1.55}
     .actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}.button{display:inline-block;padding:13px 17px;border:1px solid var(--ink);background:var(--lime);color:var(--ink);font-weight:800;text-decoration:none;box-shadow:3px 3px 0 var(--ink)}.secondary{background:transparent;box-shadow:none}
     main{padding-bottom:80px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line)}article{background:var(--panel);padding:24px}article span{color:var(--green);font:700 11px ui-monospace,monospace}article h2{margin:28px 0 8px;font:600 22px Georgia,serif}article p{margin:0;color:var(--muted);font-size:14px;line-height:1.55}
+    .offer{display:grid;grid-template-columns:1.35fr .65fr;gap:32px;align-items:center;margin-bottom:42px;padding:30px;background:var(--green);color:#f7f5ed}.offer h2{margin:8px 0 10px;font:600 34px Georgia,serif}.offer p{margin:0;color:#c9ddd3;line-height:1.6}.price{padding:22px;background:#0d3f2f;border:1px solid #6f9988;text-align:center}.price strong{display:block;font:600 42px Georgia,serif}.price span{display:block;margin:7px 0 16px;color:#c9ddd3;font-size:12px}
     .boundary{margin-top:42px;padding:28px;background:var(--green);color:#f7f5ed}.boundary h2{margin:0 0 10px;font:600 28px Georgia,serif}.boundary p{margin:0;color:#c9ddd3;line-height:1.6}
     footer{min-height:90px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--line);color:var(--muted);font-size:12px}
-    @media(max-width:680px){.grid{grid-template-columns:1fr}header{padding-top:54px}header p{font-size:17px}footer{align-items:flex-start;flex-direction:column;justify-content:center;gap:4px}}
+    @media(max-width:680px){.grid,.offer{grid-template-columns:1fr}header{padding-top:54px}header p{font-size:17px}footer{align-items:flex-start;flex-direction:column;justify-content:center;gap:4px}}
   </style>
 </head>
 <body>
-  <nav class="shell"><span>Workflow Reliability Resources</span><a href="https://workflow-hardening-lab.yisuspablo.chatgpt.site/">Open the free scanner</a></nav>
+  <nav class="shell"><span>FlowBrief for n8n</span><a href="https://workflow-hardening-lab.yisuspablo.chatgpt.site/">Open the free browser tools</a></nav>
   <header class="shell">
-    <div class="eyebrow">FREE N8N REVIEW CHECKLIST</div>
-    <h1>Catch fragile workflow behavior before production does.</h1>
-    <p>Use these ten review prompts, then run the exported workflow through a browser-only scanner. The JSON stays on your device.</p>
+    <div class="eyebrow">FLOWBRIEF QA KIT · V1.9</div>
+    <h1>Ship n8n workflows with evidence, not guesswork.</h1>
+    <p>Test, compare, document, and hand off workflow exports with ten local CLI utilities, reusable templates, and a clear release checklist. Your workflow files stay on your device.</p>
     <div class="actions">
-      <a class="button" href="https://workflow-hardening-lab.yisuspablo.chatgpt.site/">Audit a workflow free</a>
-      <a class="button secondary" href="https://www.fiverr.com/pablo_cif/audit-and-harden-your-n8n-workflows">Get the findings fixed</a>
+      <a class="button" href="https://mpago.la/1BuLRCS">Buy the QA Kit — CLP 27,500</a>
+      <a class="button secondary" href="https://workflow-hardening-lab.yisuspablo.chatgpt.site/flowbrief-qa-kit-sample.zip">Download the free sample</a>
     </div>
   </header>
   <main class="shell">
+    <section class="offer" aria-label="FlowBrief QA Kit offer">
+      <div>
+        <div class="eyebrow" style="color:var(--lime)">ONE COMMERCIAL DELIVERY PACK</div>
+        <h2>From exported JSON to a client-ready handoff.</h2>
+        <p>Includes ten tested tools, two import-ready workflow templates, payload fixtures, QA and rollback checklists, documentation templates, and a single-buyer commercial-use license.</p>
+      </div>
+      <div class="price">
+        <strong>CLP $27,500</strong>
+        <span>One time · no subscription</span>
+        <a class="button" href="https://mpago.la/1BuLRCS">Pay with Mercado Pago</a>
+      </div>
+    </section>
     <section class="grid" aria-label="Ten-point reliability checklist">
       <article><span>01</span><h2>Validate required inputs</h2><p>Reject or normalize missing fields and unexpected types before they reach another system.</p></article>
       <article><span>02</span><h2>Define duplicate behavior</h2><p>Use an idempotency key or document whether a replay should ignore, update, or create.</p></article>
-      <article><span>03</span><h2>Protect webhooks</h2><p>Configure authentication or explicitly document why public access is safe.</p></article>
-      <article><span>04</span><h2>Keep secrets out of JSON</h2><p>Use credential references and inspect code, headers, pinned data, and notes before sharing.</p></article>
+      <article><span>03</span><h2>Document webhook contracts</h2><p>Record the method, path, expected payload, response behavior, and owning workflow.</p></article>
+      <article><span>04</span><h2>Separate configuration</h2><p>Inventory credential references and environment variables before moving an export between environments.</p></article>
       <article><span>05</span><h2>Bound every retry</h2><p>Retry only temporary failures, with a limit and delay that will not amplify an outage.</p></article>
       <article><span>06</span><h2>Set timeout expectations</h2><p>External calls should fail observably instead of remaining ambiguous indefinitely.</p></article>
       <article><span>07</span><h2>Route terminal errors</h2><p>Do not let critical nodes silently continue and make the execution look successful.</p></article>
@@ -46,12 +60,14 @@
       <article><span>09</span><h2>Verify downstream records</h2><p>A green execution is not enough; confirm the intended business record was created exactly once.</p></article>
       <article><span>10</span><h2>Write the rollback first</h2><p>Keep a dated export, rollback trigger, responsible operator, and replay plan.</p></article>
     </section>
-    <section style="padding:42px 0 10px"><div class="eyebrow">DEEP-DIVE GUIDES</div><h2 style="font:600 32px Georgia,serif;margin:12px 0 18px">Solve the failure mode you can already see.</h2><div class="actions"><a class="button secondary" href="/n8n-error-handling.html">Production error handling</a><a class="button secondary" href="/n8n-webhook-duplicates.html">Webhook duplicates &amp; idempotency</a></div></section>
+    <section style="padding:42px 0 10px"><div class="eyebrow">FREE PRACTICAL GUIDES</div><h2 style="font:600 32px Georgia,serif;margin:12px 0 18px">Improve the workflow you are preparing to ship.</h2><div class="actions"><a class="button secondary" href="/n8n-error-handling.html">Production error handling</a><a class="button secondary" href="/n8n-webhook-duplicates.html">Webhook duplicates &amp; idempotency</a></div></section>
     <section class="boundary">
-      <h2>Static analysis is a starting point.</h2>
-      <p>Credentials, infrastructure, quotas, expressions, external-service behavior, and actual executions still require testing. The free scanner makes automatic red flags visible; the fixed-scope service returns import-ready fixes, redacted tests, change notes, and a rollback plan.</p>
+      <h2>Inspect the deliverables before paying.</h2>
+      <p>The free sample contains a workflow brief, contract-diff report, QA checklist preview, and license summary. The full kit is delivered after Mercado Pago approves the payment.</p>
+      <div class="actions"><a class="button" href="https://workflow-hardening-lab.yisuspablo.chatgpt.site/flowbrief-qa-kit-sample.zip">Download the sample</a><a class="button secondary" style="color:white;border-color:white" href="https://mpago.la/1BuLRCS">Buy FlowBrief QA Kit</a></div>
     </section>
   </main>
-  <footer class="shell"><span>Independent project — not affiliated with n8n or Fiverr.</span><span>Payments and communication stay inside Fiverr.</span></footer>
+  <footer class="shell"><span>Independent project — not affiliated with n8n or Mercado Pago.</span><span>Secure payment processed by Mercado Pago.</span></footer>
 </body>
 </html>
+
