@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>n8n Workflow Reliability Checklist</title>
   <meta name="description" content="A practical ten-point checklist and free browser-only scanner for reviewing exported n8n workflows before production.">
-  <link rel="canonical" href="https://workflow-hardening-lab.yisuspablo.chatgpt.site/">
+  <link rel="canonical" href="https://y1susslayerr.github.io/">
   <meta property="og:title" content="n8n Workflow Reliability Checklist">
   <meta property="og:description" content="Review silent failures, retries, webhook exposure, secrets, duplicate events, and rollback readiness.">
   <meta property="og:type" content="website">
@@ -46,6 +46,7 @@
       <article><span>09</span><h2>Verify downstream records</h2><p>A green execution is not enough; confirm the intended business record was created exactly once.</p></article>
       <article><span>10</span><h2>Write the rollback first</h2><p>Keep a dated export, rollback trigger, responsible operator, and replay plan.</p></article>
     </section>
+    <section style="padding:42px 0 10px"><div class="eyebrow">DEEP-DIVE GUIDES</div><h2 style="font:600 32px Georgia,serif;margin:12px 0 18px">Solve the failure mode you can already see.</h2><div class="actions"><a class="button secondary" href="/n8n-error-handling.html">Production error handling</a><a class="button secondary" href="/n8n-webhook-duplicates.html">Webhook duplicates &amp; idempotency</a></div></section>
     <section class="boundary">
       <h2>Static analysis is a starting point.</h2>
       <p>Credentials, infrastructure, quotas, expressions, external-service behavior, and actual executions still require testing. The free scanner makes automatic red flags visible; the fixed-scope service returns import-ready fixes, redacted tests, change notes, and a rollback plan.</p>
