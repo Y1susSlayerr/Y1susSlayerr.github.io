@@ -1,16 +1,24 @@
-# n8n Workflow Reliability Resources
+# FlowBrief QA Kit and n8n delivery resources
 
-Free, privacy-first resources for reviewing exported n8n workflows before production.
+Local tools and practical resources for testing, documenting, comparing, and
+handing off exported n8n workflows.
 
-- **Browser-only workflow audit:** https://workflow-hardening-lab.yisuspablo.chatgpt.site
+- **FlowBrief QA Kit — CLP 27,500:** https://mpago.la/1BuLRCS
+- **Free five-file sample:** https://workflow-hardening-lab.yisuspablo.chatgpt.site/flowbrief-qa-kit-sample.zip
+- **Free browser tools:** https://workflow-hardening-lab.yisuspablo.chatgpt.site
 - **Production error-handling guide:** https://y1susslayerr.github.io/n8n-error-handling.html
 - **Webhook idempotency guide:** https://y1susslayerr.github.io/n8n-webhook-duplicates.html
-- **Fixed-scope audit and hardening service:** https://www.fiverr.com/pablo_cif/audit-and-harden-your-n8n-workflows
 
-The scanner runs entirely in the browser; workflow JSON is not uploaded. It checks for silent error continuation, missing retry settings, exposed webhooks, disconnected nodes, and credential-like values embedded in node parameters.
+The browser tools run entirely on the device; workflow JSON is not uploaded.
+The paid kit contains ten tested local CLI utilities, two workflow templates,
+payload fixtures, QA and rollback checklists, handoff documentation, and a
+single-buyer commercial-use license.
 
-## Safety boundary
+## Purchase and delivery
 
-Static analysis cannot guarantee zero failures. Credentials, infrastructure, quotas, external-service behavior, and actual executions must be tested separately. Keep marketplace payments and communication inside Fiverr.
+Mercado Pago processes the one-time CLP 27,500 payment. After approval, the full
+ZIP and its SHA-256 checksum are delivered to the buyer contact associated with
+the transaction within 24 hours.
 
-Independent project. Not affiliated with n8n or Fiverr.
+Independent project. Not affiliated with n8n or Mercado Pago.
+
