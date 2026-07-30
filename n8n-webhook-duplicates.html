@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Prevent Duplicate n8n Webhook Executions with Idempotency</title>
+  <meta name="description" content="Learn a practical idempotency pattern for preventing duplicate records when n8n webhooks or upstream systems retry an event.">
+  <link rel="canonical" href="https://y1susslayerr.github.io/n8n-webhook-duplicates.html">
+  <meta property="og:title" content="Prevent Duplicate n8n Webhook Executions">
+  <meta property="og:description" content="Design webhook workflows so repeated delivery does not create repeated business actions.">
+  <meta property="og:type" content="article">
+  <style>
+    :root{--ink:#14231b;--paper:#f4f1e8;--panel:#fffdf7;--green:#124e3a;--lime:#d8ff58;--muted:#56645b;--line:#c8cec5}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,system-ui,sans-serif}.shell{width:min(820px,calc(100% - 32px));margin:auto}nav{min-height:68px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);font-weight:750}nav a{color:inherit;text-underline-offset:4px}header{padding:64px 0 34px}.eyebrow{color:var(--green);font:700 11px ui-monospace,monospace;letter-spacing:.14em}h1{margin:16px 0;font:600 clamp(40px,7vw,68px)/1 Georgia,serif;letter-spacing:-.045em}header p{max-width:700px;color:var(--muted);font-size:19px;line-height:1.55}.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:25px}.button{display:inline-block;padding:13px 17px;border:1px solid var(--ink);background:var(--lime);color:var(--ink);font-weight:800;text-decoration:none;box-shadow:3px 3px 0 var(--ink)}.secondary{background:transparent;box-shadow:none}main{padding-bottom:74px}section{padding:25px 0;border-top:1px solid var(--line)}h2{margin:0 0 10px;font:600 27px Georgia,serif}p,li{color:var(--muted);line-height:1.68}code{background:#e6e4da;padding:2px 5px}.pattern{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin:26px 0}.pattern div{background:var(--panel);padding:20px}.pattern strong{display:block;margin-bottom:7px}.callout{margin-top:30px;padding:25px;background:var(--green);color:white}.callout h2,.callout p{color:white}.callout p{opacity:.82}footer{padding:27px 0;border-top:1px solid var(--line);color:var(--muted);font-size:12px}@media(max-width:620px){nav{align-items:flex-start;flex-direction:column;justify-content:center;gap:4px}.pattern{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <nav class="shell"><a href="/">Workflow Reliability Resources</a><a href="https://workflow-hardening-lab.yisuspablo.chatgpt.site/">Free workflow scanner</a></nav>
+  <header class="shell">
+    <div class="eyebrow">N8N WEBHOOK RELIABILITY</div>
+    <h1>Retries are normal. Duplicate business actions are optional.</h1>
+    <p>Webhook senders may retry after timeouts, connection loss, or ambiguous responses. An idempotent workflow recognizes the same event and prevents a second invoice, lead, ticket, or notification.</p>
+    <div class="actions"><a class="button" href="https://workflow-hardening-lab.yisuspablo.chatgpt.site/">Scan an export free</a><a class="button secondary" href="https://www.fiverr.com/pablo_cif/audit-and-harden-your-n8n-workflows">Get the workflow hardened</a></div>
+  </header>
+  <main class="shell">
+    <section><h2>Start with a stable event key</h2><p>Prefer an event ID supplied by the sender. If none exists, derive a key only from fields that identify the same business event across retries. A timestamp generated when the request arrives is not stable and will make every retry look new.</p></section>
+    <section><h2>Claim the event before the irreversible action</h2><div class="pattern"><div><strong>1. Receive</strong><span>Validate authentication, structure, and required fields.</span></div><div><strong>2. Claim</strong><span>Atomically store the event key or detect that it already exists.</span></div><div><strong>3. Execute</strong><span>Perform the external write once and store the resulting record ID.</span></div></div><p>The claim must happen before the side effect. A simple “search, then insert” sequence can still race when two deliveries arrive together; use a unique constraint, atomic insert, or equivalent single-winner operation in the chosen data store.</p></section>
+    <section><h2>Define what a duplicate should return</h2><p>A duplicate is often not an error. Return a successful response when the earlier event completed, and an appropriate in-progress response when processing is still active. Preserve the original result identifier when the caller needs it. The exact response depends on the sender’s documented retry behavior.</p></section>
+    <section><h2>Handle the ambiguous middle state</h2><p>The hardest case is a timeout after the external service may have accepted the write. Use a provider-supported idempotency key when available. Otherwise query by a stable external reference before attempting the write again. Do not assume that a timeout means “nothing happened.”</p></section>
+    <section><h2>Choose retention deliberately</h2><p>Keep idempotency records for at least as long as the sender may retry, plus any manual replay window. Permanent financial or compliance events may require longer retention than ordinary notifications. Document cleanup so storage does not grow without limit.</p></section>
+    <section><h2>Test more than sequential duplicates</h2><ul><li>Send the same event twice, one after the other.</li><li>Send two copies concurrently.</li><li>Force a timeout after the external write.</li><li>Replay after the workflow version changes.</li><li>Confirm that two genuinely different events are not collapsed.</li></ul><p>The final assertion belongs in the downstream system: exactly one intended business record should exist.</p></section>
+    <section><h2>Do not expose the webhook by accident</h2><p>Idempotency does not replace authentication. Verify signatures or credentials where the sender supports them, reject malformed requests early, avoid logging sensitive payloads, and separate test and production webhook URLs.</p></section>
+    <div class="callout"><h2>Want the pattern applied to your export?</h2><p>The fixed-scope audit covers duplicate-event handling, retries, error routing, secret exposure, redacted tests, and rollback notes for up to three exported workflows.</p><div class="actions"><a class="button" href="https://www.fiverr.com/pablo_cif/audit-and-harden-your-n8n-workflows">View the USD 150 service</a></div></div>
+  </main>
+  <footer class="shell">Independent resource. Not affiliated with n8n or Fiverr. Adapt retention, authentication, and response behavior to the upstream provider.</footer>
+</body>
+</html>
