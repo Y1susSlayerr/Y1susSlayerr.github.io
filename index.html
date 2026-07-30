@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>n8n Workflow Reliability Checklist</title>
+  <meta name="description" content="A practical ten-point checklist and free browser-only scanner for reviewing exported n8n workflows before production.">
+  <link rel="canonical" href="https://workflow-hardening-lab.yisuspablo.chatgpt.site/">
+  <meta property="og:title" content="n8n Workflow Reliability Checklist">
+  <meta property="og:description" content="Review silent failures, retries, webhook exposure, secrets, duplicate events, and rollback readiness.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://workflow-hardening-lab.yisuspablo.chatgpt.site/og.png">
+  <style>
+    :root{--ink:#14231b;--paper:#f4f1e8;--panel:#fffdf7;--green:#124e3a;--lime:#d8ff58;--muted:#657168;--line:#c8cec5}
+    *{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,system-ui,sans-serif}.shell{width:min(980px,calc(100% - 32px));margin:auto}
+    nav{min-height:72px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);font-weight:750}nav a{color:inherit;text-underline-offset:4px}
+    header{padding:78px 0 48px}.eyebrow{color:var(--green);font:700 11px ui-monospace,monospace;letter-spacing:.14em}h1{max-width:850px;margin:18px 0;font:600 clamp(44px,8vw,78px)/.98 Georgia,serif;letter-spacing:-.05em}header p{max-width:690px;color:#48544c;font-size:20px;line-height:1.55}
+    .actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}.button{display:inline-block;padding:13px 17px;border:1px solid var(--ink);background:var(--lime);color:var(--ink);font-weight:800;text-decoration:none;box-shadow:3px 3px 0 var(--ink)}.secondary{background:transparent;box-shadow:none}
+    main{padding-bottom:80px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line)}article{background:var(--panel);padding:24px}article span{color:var(--green);font:700 11px ui-monospace,monospace}article h2{margin:28px 0 8px;font:600 22px Georgia,serif}article p{margin:0;color:var(--muted);font-size:14px;line-height:1.55}
+    .boundary{margin-top:42px;padding:28px;background:var(--green);color:#f7f5ed}.boundary h2{margin:0 0 10px;font:600 28px Georgia,serif}.boundary p{margin:0;color:#c9ddd3;line-height:1.6}
+    footer{min-height:90px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--line);color:var(--muted);font-size:12px}
+    @media(max-width:680px){.grid{grid-template-columns:1fr}header{padding-top:54px}header p{font-size:17px}footer{align-items:flex-start;flex-direction:column;justify-content:center;gap:4px}}
+  </style>
+</head>
+<body>
+  <nav class="shell"><span>Workflow Reliability Resources</span><a href="https://workflow-hardening-lab.yisuspablo.chatgpt.site/">Open the free scanner</a></nav>
+  <header class="shell">
+    <div class="eyebrow">FREE N8N REVIEW CHECKLIST</div>
+    <h1>Catch fragile workflow behavior before production does.</h1>
+    <p>Use these ten review prompts, then run the exported workflow through a browser-only scanner. The JSON stays on your device.</p>
+    <div class="actions">
+      <a class="button" href="https://workflow-hardening-lab.yisuspablo.chatgpt.site/">Audit a workflow free</a>
+      <a class="button secondary" href="https://www.fiverr.com/pablo_cif/audit-and-harden-your-n8n-workflows">Get the findings fixed</a>
+    </div>
+  </header>
+  <main class="shell">
+    <section class="grid" aria-label="Ten-point reliability checklist">
+      <article><span>01</span><h2>Validate required inputs</h2><p>Reject or normalize missing fields and unexpected types before they reach another system.</p></article>
+      <article><span>02</span><h2>Define duplicate behavior</h2><p>Use an idempotency key or document whether a replay should ignore, update, or create.</p></article>
+      <article><span>03</span><h2>Protect webhooks</h2><p>Configure authentication or explicitly document why public access is safe.</p></article>
+      <article><span>04</span><h2>Keep secrets out of JSON</h2><p>Use credential references and inspect code, headers, pinned data, and notes before sharing.</p></article>
+      <article><span>05</span><h2>Bound every retry</h2><p>Retry only temporary failures, with a limit and delay that will not amplify an outage.</p></article>
+      <article><span>06</span><h2>Set timeout expectations</h2><p>External calls should fail observably instead of remaining ambiguous indefinitely.</p></article>
+      <article><span>07</span><h2>Route terminal errors</h2><p>Do not let critical nodes silently continue and make the execution look successful.</p></article>
+      <article><span>08</span><h2>Test the failure path</h2><p>Exercise invalid input, temporary failure, permanent failure, timeout, and alert failure.</p></article>
+      <article><span>09</span><h2>Verify downstream records</h2><p>A green execution is not enough; confirm the intended business record was created exactly once.</p></article>
+      <article><span>10</span><h2>Write the rollback first</h2><p>Keep a dated export, rollback trigger, responsible operator, and replay plan.</p></article>
+    </section>
+    <section class="boundary">
+      <h2>Static analysis is a starting point.</h2>
+      <p>Credentials, infrastructure, quotas, expressions, external-service behavior, and actual executions still require testing. The free scanner makes automatic red flags visible; the fixed-scope service returns import-ready fixes, redacted tests, change notes, and a rollback plan.</p>
+    </section>
+  </main>
+  <footer class="shell"><span>Independent project — not affiliated with n8n or Fiverr.</span><span>Payments and communication stay inside Fiverr.</span></footer>
+</body>
+</html>
