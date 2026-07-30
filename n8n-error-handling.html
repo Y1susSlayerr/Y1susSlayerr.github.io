@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>n8n Error Handling Checklist for Production Workflows</title>
+  <meta name="description" content="A practical n8n error-handling checklist covering retries, terminal failures, alerts, timeouts, partial writes, testing, and rollback.">
+  <link rel="canonical" href="https://y1susslayerr.github.io/n8n-error-handling.html">
+  <meta property="og:title" content="n8n Error Handling Checklist">
+  <meta property="og:description" content="Make failed executions observable, bounded, and recoverable before production traffic arrives.">
+  <meta property="og:type" content="article">
+  <style>
+    :root{--ink:#14231b;--paper:#f4f1e8;--panel:#fffdf7;--green:#124e3a;--lime:#d8ff58;--muted:#56645b;--line:#c8cec5}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,system-ui,sans-serif}.shell{width:min(820px,calc(100% - 32px));margin:auto}nav{min-height:68px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);font-weight:750}nav a{color:inherit;text-underline-offset:4px}header{padding:64px 0 34px}.eyebrow{color:var(--green);font:700 11px ui-monospace,monospace;letter-spacing:.14em}h1{margin:16px 0;font:600 clamp(40px,7vw,68px)/1 Georgia,serif;letter-spacing:-.045em}header p{max-width:700px;color:var(--muted);font-size:19px;line-height:1.55}.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:25px}.button{display:inline-block;padding:13px 17px;border:1px solid var(--ink);background:var(--lime);color:var(--ink);font-weight:800;text-decoration:none;box-shadow:3px 3px 0 var(--ink)}.secondary{background:transparent;box-shadow:none}main{padding-bottom:74px}section{padding:25px 0;border-top:1px solid var(--line)}h2{margin:0 0 10px;font:600 27px Georgia,serif}p,li{color:var(--muted);line-height:1.68}code{background:#e6e4da;padding:2px 5px}.callout{margin-top:30px;padding:25px;background:var(--green);color:white}.callout h2,.callout p{color:white}.callout p{opacity:.82}footer{padding:27px 0;border-top:1px solid var(--line);color:var(--muted);font-size:12px}@media(max-width:620px){nav{align-items:flex-start;flex-direction:column;justify-content:center;gap:4px}}
+  </style>
+</head>
+<body>
+  <nav class="shell"><a href="/">Workflow Reliability Resources</a><a href="https://workflow-hardening-lab.yisuspablo.chatgpt.site/">Free workflow scanner</a></nav>
+  <header class="shell">
+    <div class="eyebrow">N8N PRODUCTION GUIDE</div>
+    <h1>Error handling that fails loudly—and recovers safely.</h1>
+    <p>A successful execution badge is not the same as a successful business outcome. Use this checklist to make errors observable, retries bounded, and recovery predictable.</p>
+    <div class="actions"><a class="button" href="https://workflow-hardening-lab.yisuspablo.chatgpt.site/">Scan an export free</a><a class="button secondary" href="https://www.fiverr.com/pablo_cif/audit-and-harden-your-n8n-workflows">Request a fixed-scope audit</a></div>
+  </header>
+  <main class="shell">
+    <section><h2>1. Classify the failure before retrying</h2><p>Temporary failures such as rate limits, gateway errors, and short network interruptions may justify a retry. Invalid credentials, malformed payloads, permission errors, and rejected business rules usually do not. Retrying permanent failures adds noise and may intensify an outage.</p></section>
+    <section><h2>2. Put a hard bound on retries</h2><p>Every retry policy needs a maximum attempt count and a delay. For rate-limited services, respect the provider’s retry guidance when available. Record the attempt number so alerts and later analysis can distinguish the first failure from the terminal one.</p></section>
+    <section><h2>3. Separate terminal errors from optional branches</h2><p>“Continue on fail” can be appropriate for an optional enrichment step, but dangerous on the node that creates an invoice, updates inventory, or sends a customer notification. Document which failures may continue and route every terminal error to an explicit recovery path.</p></section>
+    <section><h2>4. Alert with useful context—without secrets</h2><p>An alert should identify the workflow, execution, failing node, timestamp, sanitized record identifier, and next action. Do not include credentials, authorization headers, full customer records, or raw webhook bodies. Link operators to the internal execution record when access is controlled.</p></section>
+    <section><h2>5. Plan for partial writes</h2><p>A workflow can fail after one external system has already accepted a change. Decide whether recovery should roll the change back, continue from the last confirmed step, or safely replay the complete event. Track the external record IDs needed to make that decision.</p></section>
+    <section><h2>6. Test the failure path deliberately</h2><ul><li>Invalid or missing required input.</li><li>A temporary upstream failure followed by recovery.</li><li>A permanent rejection that must not retry.</li><li>A timeout or ambiguous external response.</li><li>A failure inside the alerting path itself.</li></ul><p>Verify downstream records, not only n8n’s execution status. Confirm whether each intended write happened zero times, once, or more than once.</p></section>
+    <section><h2>7. Keep rollback and replay separate</h2><p>A rollback restores a known safe workflow version. A replay reprocesses business events. Store dated exports, define the rollback trigger, identify the responsible operator, and document which events are safe to replay. Never assume that replaying a failed execution is harmless.</p></section>
+    <div class="callout"><h2>Need an import-ready remediation?</h2><p>The fixed-scope service reviews exported workflows, returns corrected JSON, redacted tests, change notes, and a rollback plan. Payments and workflow exchange stay inside Fiverr.</p><div class="actions"><a class="button" href="https://www.fiverr.com/pablo_cif/audit-and-harden-your-n8n-workflows">View the USD 150 service</a></div></div>
+  </main>
+  <footer class="shell">Independent resource. Not affiliated with n8n or Fiverr. Static analysis cannot verify credentials, infrastructure, or external-service behavior.</footer>
+</body>
+</html>
