@@ -19,7 +19,7 @@
     <div class="eyebrow">N8N PRODUCTION GUIDE</div>
     <h1>Error handling that fails loudly—and recovers safely.</h1>
     <p>A successful execution badge is not the same as a successful business outcome. Use this checklist to make errors observable, retries bounded, and recovery predictable.</p>
-    <div class="actions"><a class="button" href="https://workflow-hardening-lab.yisuspablo.chatgpt.site/">Scan an export free</a><a class="button secondary" href="https://www.fiverr.com/pablo_cif/audit-and-harden-your-n8n-workflows">Request a fixed-scope audit</a></div>
+    <div class="actions"><a class="button" href="https://workflow-hardening-lab.yisuspablo.chatgpt.site/">Use the free FlowBrief tools</a><a class="button secondary" href="https://mpago.la/1BuLRCS">Get the QA Kit — CLP 27,500</a></div>
   </header>
   <main class="shell">
     <section><h2>1. Classify the failure before retrying</h2><p>Temporary failures such as rate limits, gateway errors, and short network interruptions may justify a retry. Invalid credentials, malformed payloads, permission errors, and rejected business rules usually do not. Retrying permanent failures adds noise and may intensify an outage.</p></section>
@@ -29,8 +29,9 @@
     <section><h2>5. Plan for partial writes</h2><p>A workflow can fail after one external system has already accepted a change. Decide whether recovery should roll the change back, continue from the last confirmed step, or safely replay the complete event. Track the external record IDs needed to make that decision.</p></section>
     <section><h2>6. Test the failure path deliberately</h2><ul><li>Invalid or missing required input.</li><li>A temporary upstream failure followed by recovery.</li><li>A permanent rejection that must not retry.</li><li>A timeout or ambiguous external response.</li><li>A failure inside the alerting path itself.</li></ul><p>Verify downstream records, not only n8n’s execution status. Confirm whether each intended write happened zero times, once, or more than once.</p></section>
     <section><h2>7. Keep rollback and replay separate</h2><p>A rollback restores a known safe workflow version. A replay reprocesses business events. Store dated exports, define the rollback trigger, identify the responsible operator, and document which events are safe to replay. Never assume that replaying a failed execution is harmless.</p></section>
-    <div class="callout"><h2>Need an import-ready remediation?</h2><p>The fixed-scope service reviews exported workflows, returns corrected JSON, redacted tests, change notes, and a rollback plan. Payments and workflow exchange stay inside Fiverr.</p><div class="actions"><a class="button" href="https://www.fiverr.com/pablo_cif/audit-and-harden-your-n8n-workflows">View the USD 150 service</a></div></div>
+    <div class="callout"><h2>Turn the checklist into repeatable delivery evidence.</h2><p>FlowBrief QA Kit includes ten local CLI utilities, payload fixtures, release and rollback checklists, and handoff templates for n8n builders.</p><div class="actions"><a class="button" href="https://mpago.la/1BuLRCS">Buy the QA Kit — CLP 27,500</a><a class="button secondary" style="color:white;border-color:white" href="https://workflow-hardening-lab.yisuspablo.chatgpt.site/flowbrief-qa-kit-sample.zip">Download the free sample</a></div></div>
   </main>
-  <footer class="shell">Independent resource. Not affiliated with n8n or Fiverr. Static analysis cannot verify credentials, infrastructure, or external-service behavior.</footer>
+  <footer class="shell">Independent resource. Not affiliated with n8n or Mercado Pago. Static analysis cannot verify infrastructure, quotas, or external-service behavior.</footer>
 </body>
 </html>
+
