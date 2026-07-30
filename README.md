@@ -4,9 +4,9 @@ Local tools and practical resources for testing, documenting, comparing, and
 handing off exported n8n workflows.
 
 - **FlowBrief QA Kit — CLP 27,500:** https://mpago.la/1BuLRCS
-- **Preview real sample outputs:** https://workflow-hardening-lab.yisuspablo.chatgpt.site/#sample-preview
+- **Preview real sample outputs:** https://workflow-hardening-lab.yisuspablo.chatgpt.site/#proof
 - **Download the five-file sample:** https://workflow-hardening-lab.yisuspablo.chatgpt.site/flowbrief-qa-kit-sample.zip
-- **Free browser tools:** https://workflow-hardening-lab.yisuspablo.chatgpt.site
+- **Complete sales page and product proof:** https://workflow-hardening-lab.yisuspablo.chatgpt.site
 - **Production error-handling guide:** https://y1susslayerr.github.io/n8n-error-handling.html
 - **Webhook idempotency guide:** https://y1susslayerr.github.io/n8n-webhook-duplicates.html
 
